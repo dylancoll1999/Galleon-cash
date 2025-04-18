@@ -13,7 +13,21 @@ if ('serviceWorker' in navigator) {
     console.log('Service Worker not supported in this browser.');
 }
 // === PWA Service Worker Registration END ===
+document.getElementById('print-friendly-button').addEventListener('click', () => {
+  const date = document.getElementById('current-date').value;
+  const denomIds = ['50','20','10','5','2','1','0p50','0p20','0p10','0p05'];
+  const query = new URLSearchParams({ date });
 
+  [1, 2, 3].forEach(till => {
+    denomIds.forEach(denom => {
+      const el = document.getElementById(`t${till}-${denom}`);
+      query.set(`t${till}-${denom}`, el?.value || "0.00");
+    });
+  });
+
+  const url = `print-view.html?${query.toString()}`;
+  window.open(url, '_blank');
+});
 
 document.addEventListener('DOMContentLoaded', async () => {
     // --- Default Settings ---
