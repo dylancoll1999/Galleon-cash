@@ -211,6 +211,12 @@
     </div>
 
     <script src="script.js" defer></script>
-
+<script>
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      window.print(); // Ensures everything is rendered first
+    }, 1000); // Delay slightly to let JS layout settle
+  });
+</script>
 </body>
 </html>
