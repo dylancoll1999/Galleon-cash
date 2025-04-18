@@ -1,4 +1,4 @@
- /* === Styles for Features Added === */
+/* === Styles for Features Added === */
 
 /* Style for significantly negative difference */
 .difference-very-negative {
@@ -121,7 +121,7 @@ button.add-pdq-btn:hover:not(:disabled) { background-color: #218838; }
     body.busy { overflow: hidden; }
 
     /* === Responsive Table Styles - UPDATED BREAKPOINT === */
-    @media (max-width: 768px) { /* Increased breakpoint */
+    @media (max-width: 768px) { /* Using 768px breakpoint */
         .float-suggestion { width: 100%; margin-bottom: 10px; }
         #reconciliation-table thead { display: none; }
         #reconciliation-table, #reconciliation-table tbody, #reconciliation-table tr, #reconciliation-table td { display: block; width: 100% !important; box-sizing: border-box; }
@@ -184,4 +184,38 @@ button.add-pdq-btn:hover:not(:disabled) { background-color: #218838; }
          #print-content p.print-date { font-size: 12pt; font-weight: bold; margin: 0 0 0.5cm 0; text-align: center !important; }
          table.print-table { width: 100%; border: 1px solid #000 !important; margin-bottom: 1cm; border-collapse: collapse; border-spacing: 0; page-break-inside: avoid; }
          table.print-table th, table.print-table td { border: 1px solid #aaa !important; padding: 5px 8px; text-align: right; vertical-align: middle; font-size: 9pt; background-color: #fff !important; color: #000 !important; }
-         table.print-table th { font-weigh
+         table.print-table th { font-weight: bold; text-align: center; text-transform: uppercase; border-bottom: 1.5px solid #333 !important; }
+         table.print-table td:first-child { text-align: left; font-weight: bold; } /* Denom column bold */
+         table.print-table tfoot td { font-weight: bold; background-color: #eee !important; }
+         /* Hide Tills based on body class, even within print container's table */
+         body.till2-hidden #print-content .till2-column,
+         body.till3-hidden #print-content .till3-column { display: none !important; }
+
+         /* Print Summary Section Styles */
+         .print-summary-section { border: 1px solid #000; padding: 15px; margin-top: 1cm; page-break-inside: avoid; background-color: #fff !important; }
+         .print-summary-section h2 { font-size: 13pt; margin-top: 0; margin-bottom: 0.5cm; border-bottom: 1px solid #333; padding-bottom: 4px; text-align: left; }
+         .print-summary-section p { margin: 6px 0; display: flex; justify-content: space-between; align-items: baseline; font-size: 10pt; }
+         .print-summary-section .print-label { font-weight: bold; text-align: left; margin-right: 10px; min-width: 150px; display: inline-block; vertical-align: baseline; }
+         .print-summary-section .print-value { font-weight: bold; text-align: right; min-width: 120px; display: inline-block; vertical-align: baseline;}
+         /* Style spans copied via outerHTML for difference in table/daily summary */
+         .print-summary-section .print-value span,
+         table.print-table span.difference-positive,
+         table.print-table span.difference-negative {
+             display: inline !important; font-size: inherit !important; background-color: transparent !important; color: #000 !important; padding: 0 !important; margin: 0 !important; border: none !important; font-weight: bold !important; min-width: auto !important;
+         }
+         .print-summary-section .print-value .difference-positive::before,
+         table.print-table span.difference-positive::before { content: "+"; }
+         .print-summary-section .print-value .difference-negative,
+         table.print-table span.difference-negative { /* Keep default sign */ }
+         .print-summary-section .print-value .large-discrepancy,
+         table.print-table span.large-discrepancy { border-bottom: 1px dotted #333; }
+
+         /* Notes in Print */
+         .print-notes .print-label { font-weight: bold; display: block; text-align: left; margin-top: 15px; margin-bottom: 0; }
+         .print-notes p { white-space: pre-wrap; text-align: left; margin-top: 2px; padding-left: 10px; font-weight: normal; font-size: 9pt; }
+
+         /* Hide original interactive elements explicitly for print if body.printing fails */
+         .container, .modal, #busy-overlay, #theme-toggle, .date-nav-buttons button, .action-buttons button { display: none !important; }
+         /* Ensure print container IS visible */
+         #print-container { display: block !important; }
+    }
