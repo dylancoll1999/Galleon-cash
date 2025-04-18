@@ -1,4 +1,4 @@
- /* === Styles for Features Added === */
+/* === Styles for Features Added === */
 
 /* Style for significantly negative difference */
 .difference-very-negative {
@@ -48,7 +48,7 @@ button.add-pdq-btn:hover:not(:disabled) { background-color: #218838; }
     /* === Denomination Column Style === */
     td:first-child {
         text-align: left;
-        font-weight: bold; /* Increased from 600 */
+        font-weight: bold; /* BOLDER */
         background-color: var(--bg-color);
     }
     tbody tr:hover { background-color: var(--row-hover-bg); }
@@ -119,10 +119,10 @@ button.add-pdq-btn:hover:not(:disabled) { background-color: #218838; }
     .spinner { border: 6px solid #f3f3f3; border-top: 6px solid #007bff; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     body.busy { overflow: hidden; }
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
+
+    /* === Responsive Table Styles - UPDATED BREAKPOINT === */
+    @media (max-width: 768px) { /* Increased from 700px */
         .float-suggestion { width: 100%; margin-bottom: 10px; }
-        /* === UPDATED Responsive Breakpoint === */
         #reconciliation-table thead { display: none; }
         #reconciliation-table, #reconciliation-table tbody, #reconciliation-table tr, #reconciliation-table td { display: block; width: 100% !important; box-sizing: border-box; }
         #reconciliation-table tr { margin-bottom: 15px; border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; }
@@ -173,7 +173,7 @@ button.add-pdq-btn:hover:not(:disabled) { background-color: #218838; }
          /* Style the dynamically generated print content */
          #print-content { background-color: #fff !important; color: #000 !important; }
          #print-content h1 { font-size: 16pt; margin-bottom: 0.6cm; text-align: center; font-weight: bold; }
-         #print-content p.print-date { font-size: 12pt; font-weight: bold; margin: 0 0 0.5cm 0; text-align: center !important; /* Center date */ }
+         #print-content p.print-date { font-size: 12pt; font-weight: bold; margin: 0 0 0.5cm 0; text-align: center !important; }
          table.print-table { width: 100%; border: 1px solid #000 !important; margin-bottom: 1cm; border-collapse: collapse; border-spacing: 0; page-break-inside: avoid; }
          table.print-table th, table.print-table td { border: 1px solid #aaa !important; padding: 5px 8px; text-align: right; vertical-align: middle; font-size: 9pt; background-color: #fff !important; color: #000 !important; }
          table.print-table th { font-weight: bold; text-align: center; text-transform: uppercase; border-bottom: 1.5px solid #333 !important; }
@@ -204,4 +204,3 @@ button.add-pdq-btn:hover:not(:disabled) { background-color: #218838; }
          /* Ensure print container IS visible if body class fails */
          #print-container { display: block !important; }
     }
-
