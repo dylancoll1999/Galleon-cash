@@ -528,3 +528,62 @@ rint-notes .print-label { font-weight: bold; display: block; text-align: left; m
          /* Ensure print container IS visible */
          #print-container { display: block !important; }
     }
+@media print {
+  /* Make all content visible */
+  body * {
+    visibility: visible !important;
+    color: black !important;
+    background: white !important;
+  }
+
+  /* Hide interface elements that shouldn't appear on printouts */
+  #theme-toggle,
+  .date-nav-buttons,
+  .action-buttons,
+  .status-message,
+  .modal,
+  #dev-modal,
+  #backup-reminder,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Print background as white even in dark mode */
+  body.dark-mode,
+  .container {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Prevent layout issues */
+  .container {
+    position: static !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  /* Tables should break nicely and be readable */
+  table {
+    page-break-inside: auto;
+    border-collapse: collapse;
+    width: 100% !important;
+    font-size: 12pt;
+  }
+
+  table, th, td {
+    border: 1px solid #999 !important;
+    color: black !important;
+  }
+
+  th, td {
+    padding: 8px !important;
+    text-align: left !important;
+  }
+
+  /* Optional: Add logo or heading only in print */
+  .print-only {
+    display: block !important;
+  }
+}
