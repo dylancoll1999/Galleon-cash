@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Print - Galleon Bar Cashing Up</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; color: #000; background: #fff; }
+    h1 { text-align: center; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: right; }
+    th { background: #eee; }
+    td:first-child, th:first-child { text-align: left; }
+  </style>
+</head>
+<body>
+  <h1>Galleon Bar Cashing Up</h1>
+  <p id="date-line"></p>
+  <table id="print-table">
+    <thead>
+      <tr><th>Denomination</th><th>Till 1 (£)</th><th>Till 2 (£)</th><th>Till 3 (£)</th></tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+      <tr><td><strong>Total Cash</strong></td><td id="t1-total">£0.00</td><td id="t2-total">£0.00</td><td id="t3-total">£0.00</td></tr>
+    </tfoot>
+  </table>
+  <script>
+    const query = new URLSearchParams(location.search);
+    const denomList = ['50','20','10','5','2','1','0p50','0p20','0p10','0p05'];
+    const tbody = document.querySelector('tbody');
+
+    let t1Total = 0, t2Total = 0, t3Total = 0;
+
+    denomList.forEach(denom => {
+      const row = document.createElement('tr');
+      const label = denom.startsWith("0p") ? denom.replace("0p", "") + "p" : "£" + denom;
+      row.innerHTML = `
+        <td>${label}</td>
+        <td>${query.get(`t1-${denom}`) || '0.00'}</td>
+        <td>${query.get(`t2-${denom}`) || '0.00'}</td>
+        <td>${query.get(`t3-${denom}`) || '0.00'}</td>`;
+      tbody.appendChild(row);
+
+      t1Total += parseFloat(query.get(`t1-${denom}`)) || 0;
+      t2Total += parseFloat(query.get(`t2-${denom}`)) || 0;
+      t3Total += parseFloat(query.get(`t3-${denom}`)) || 0;
+    });
+
+    document.getElementById('date-line').textContent = `Date: ${query.get('date') || ''}`;
+    document.getElementById('t1-total').textContent = `£${t1Total.toFixed(2)}`;
+    document.getElementById('t2-total').textContent = `£${t2Total.toFixed(2)}`;
+    document.getElementById('t3-total').textContent = `£${t3Total.toFixed(2)}`;
+
+    setTimeout(() => window.print(), 500);
+  </script>
+</body>
+</html>
